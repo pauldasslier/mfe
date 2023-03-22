@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { mount } from 'marketing/MarketingApp';
+import { mount } from 'auth/AuthApp';
 
-export default () => {
+export default ({ setSignedIn }) => {
   const history = useHistory();
   const ref = useRef(null);
 
@@ -17,6 +17,9 @@ export default () => {
         }
       },
       initialPath: history.location.pathname,
+      onSignIn: () => {
+        setSignedIn(true);
+      }
     });
 
     history.listen(onParentNavigate);
